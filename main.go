@@ -1,11 +1,24 @@
-// package main
+package main
 
-// // import "github.com/gin-gonic/gin"
+import (
+	"api-mini-ecommerce/config"
+	"api-mini-ecommerce/controller"
+	"net/http"
 
-// func main() {
-// 	s := gin.Default()
-// 	s.GET("/", func(ctx *gin.Context) {
-// 		ctx.JSON(http.StatusOK, "hello world")
-// 	})
-// 	s.Run(":8000")
-// }
+	"github.com/gin-gonic/gin"
+)
+
+func main() {
+	config.DBConnect()
+	s := gin.Default()
+	s.GET("/", func(ctx *gin.Context) {
+		ctx.JSON(http.StatusOK, gin.H{
+			"Message": "Welcome",
+		})
+	})
+
+	s.GET("/product", controller.HandlerGetProduct)
+	s.POST("orders", controller.HandlerPostProduct)
+	s.GET("/orders", controller.HandlerGetOrder)
+	s.Run()
+}

@@ -1,10 +1,18 @@
 package entity
 
-import "time"
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
 
 type Order struct {
-	ID           uint
-	BuyerEmail   string
-	BuyerAddress string
-	OrderDate    time.Time
+	*gorm.Model
+
+	ID           uint   `db:"id"`
+	BuyerEmail   string `db:"buyer_email"`
+	BuyerAddress string `db:"buyer_address"`
+	ProductID    uint   `db:"product_id"`
+	OrderTime    time.Time
+	Product      Product
 }

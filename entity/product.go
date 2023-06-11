@@ -1,8 +1,11 @@
 package entity
 
+import "gorm.io/gorm"
+
 type Product struct {
-	ID          uint
-	Name        string
-	Description string
-	Price       int
+	*gorm.Model
+	ID          uint   `db:"id"`
+	Name        string `db:"name"`
+	Description string `db:"description"`
+	Price       int    `db:"price"`
 }
